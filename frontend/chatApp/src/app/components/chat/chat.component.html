@@ -1,0 +1,79 @@
+<!-- <h3>
+  {{userDetails.name}}
+</h3>
+<div *ngFor="let message of messages">
+  @if (message.userId == userId) {
+  <p style="margin-left:80%;">{{message.content}}</p>
+  }
+  @else {
+  <p>{{message.content}}</p>
+  }
+</div>
+<div class="sendMessage">
+  Type here to send Message
+  <input type="text" #messageInput />
+  <button (click)='sendMessage(messageInput.value)'>Send</button>
+</div> -->
+
+@if (userDetails) {
+<table class="tableData">
+  <tr>
+    <div class="profile" fxLayout="row" fxFlex="100%" fxLayoutGap="20px">
+      <div fxFlex="50%" fxLayout="row" fxLayoutGap="20px">
+        @if (userDetails.imgUrl) {
+        <img src="{{userDetails.imgUrl}}" class="userImg" fxLayoutAlign="center center">
+        }
+        @else {
+        <img src="/userIcon.jpeg" class="userImg" fxLayoutAlign="center center">
+
+        }
+        <p fxLayoutAlign="center center">{{userDetails.name}}</p>
+      </div>
+
+      <div fxFlex="50%" fxLayoutAlign="end center" fxLayoutGap="40px">
+        <i class="fa-solid fa-phone fa-xl" style="color: #929498;"></i>
+        <i class="fa-solid fa-video fa-xl" style="color: #929498;"></i>
+        <i class="fa-solid fa-ellipsis-vertical fa-xl" style="color: #929498;"></i>
+      </div>
+
+    </div>
+  </tr>
+  <tr>
+    <div class="messages">
+      <div *ngFor="let message of messages">
+        @if (message.userId == userId) {
+        <div class="senderMessage" fxLayout="row">
+          <div fxFlex="90%" fxLayoutAlign="start center">
+            {{message.content}}
+          </div>
+          <div class="timeStamp" fxFlex="10%" fxLayoutAlign="end end">
+            {{message.createdAt }}
+          </div>
+        </div>
+        }
+        @else {
+        <div class="receiverMessage" fxLayoutAlign="start center">
+          {{message.content}}
+        </div>
+        }
+      </div>
+    </div>
+  </tr>
+  <tr>
+    <div class="sendMessage" fxFlex="100%" fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="start center">
+      <i class="fa-solid fa-link fa-xl" style="color: #aaadb1; padding-left: 20px;"></i>
+      <input type="text" #messageInput placeholder="Type a message here .."
+        (keydown.enter)="sendMessage(messageInput.value)">
+      <div (click)='sendMessage(messageInput.value)'>
+        <img src="/send.png" alt="ssa" style="cursor: pointer;">
+      </div>
+    </div>
+  </tr>
+</table>
+}
+@else {
+<div class="whatsappHome" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+  <img src="/whatappHome.png" alt="">
+  <p>Welcome to whatsapp Desktop </p>
+</div>
+}

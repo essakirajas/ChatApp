@@ -1,0 +1,95 @@
+.whatsappHome {
+  border-left: 1px solid rgb(197, 193, 193);
+  height: 790px;
+}
+
+.whatsappHome img {
+  height: 30%;
+  width: 40%;
+  border-radius: 10px;
+}
+
+.whatsappHome p {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.tableData {
+  width: 100%
+}
+
+.profile {
+  width: 100%;
+  background-color: rgb(237, 237, 237);
+  padding: 10px 20px;
+  border-left: 1px solid rgb(226, 220, 220);
+}
+
+.profile p {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.userImg {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+.messages {
+  overflow-y: auto;
+  height: 610px;
+  padding: 10px;
+  background-image: url('/chatbg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.senderMessage {
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 300;
+  margin-left: 55%;
+  width: 50%;
+  max-width: 40%;
+  background-color: rgb(219, 248, 198);
+  word-wrap: break-word;
+  white-space: normal;
+  display: inline-block;
+  overflow-wrap: break-word;
+  height: auto;
+}
+
+.timeStamp{
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+
+.receiverMessage {
+  margin-top: 5px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: 300;
+  margin-left: 5%;
+  height: 40px;
+  width: 45%;
+  background-color: rgb(237, 243, 234);
+}
+
+.sendMessage {
+  width: 100%;
+  padding: 15px;
+  background-color: rgb(237, 237, 237);
+}
+
+.sendMessage input {
+  padding-left: 20px;
+  font-size: medium;
+  opacity: .6;
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  width: 85%;
+}
