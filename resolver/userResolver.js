@@ -54,6 +54,12 @@ const user = {
       return users;
     },
 
+    async validToken(_, __, { req, res, user }) {
+      requireAuth(user);
+      if (!user) return { msg: "failure" };
+      return { msg: "success" };
+    },
+
     async getId(_, __, { req, res, user }) {
       requireAuth(user);
       const users = user.data;

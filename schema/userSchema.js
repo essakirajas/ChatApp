@@ -10,7 +10,7 @@ directive @upper on FIELD_DEFINITION
     password: String
     otp:Int!
     phoneNo:Int
-    imageUrl: String
+    imgUrl: String
     createdAt:Date!
   }
   
@@ -21,6 +21,7 @@ directive @upper on FIELD_DEFINITION
   }
 
   type Query {
+    validToken:Message
     validUser(phoneNo:Int!):Message
     login(phoneNo: Int!, otp: String!): Message
     getId : user

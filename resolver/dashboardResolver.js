@@ -1,4 +1,5 @@
 const { Op } = require('sequelize');
+const { requireAuth } = require('../services/requireAuth');
 
 const User = require('../models').users;
 const Message = require('../models').messages;
@@ -16,7 +17,8 @@ const dashboard = {
   },
 
   Query: {
-    friends: async function (_, args) {
+    friends: async function (_, args, { req, res, user }) {
+      requireAuth(user);
       const users = await User.findAll({ where: { id: { [Op.ne]: args.userId } } });
       return users.map(user => ({ ...user.dataValues, requesterId: args.userId }));
     }
