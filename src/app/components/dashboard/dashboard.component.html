@@ -1,9 +1,10 @@
+@if (tokenValidation) {
 <div class="content" fxLayout="row">
-
   <div class="rightContent" fxFlex="25%" fxLayout="column">
 
     <div class="userprofile" fxFlex="10.5%">
-      <img src="/photo.webp" class="userImg" fxFlex="20%" fxLayoutAlign="start start">
+      <img src="{{localUserDetails.imgUrl}}" class="userImg" fxFlex="20%" fxLayoutAlign="start start">
+      <p>{{localUserDetails.name}}</p>
       <div class="profileContent" fxFlex="80%" fxLayoutAlign="end end" fxLayoutGap="30px">
         <i class="fa-regular fa-moon fa-xl" style="color: #a6aab0;"></i>
         <i class="fa-regular fa-message fa-xl" style="color: #aaaeb6;"></i>
@@ -60,3 +61,7 @@
     </div>
   </div>
 </div>
+}
+@else {
+<p>{{error}}</p>
+}

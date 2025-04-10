@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlexLayoutModule } from 'ngx-flexible-layout';
 import { Apollo } from 'apollo-angular';
-import { login } from './graphqlCode';
+import { login, getId } from './graphqlCode';
 
 @Component({
   selector: 'app-code',
@@ -17,6 +17,7 @@ export class CodeComponent {
 
   error: any;
   loading: boolean = false;
+  token!: string;
   code: string[] = ['', '', '', '', '', ''];
   inputs = Array(6).fill(0);
 
@@ -55,23 +56,47 @@ export class CodeComponent {
         phoneNo: this.phoneNumber,
         otp: this.activationCode
       }
+    }).valueChanges.subscribe({
+      next: ({ data }: any) => {
+        if (data?.login) {
+          this.loading = true;
+          console.log(data);
+          this.token = data.login.token;
+          sessionStorage.setItem("token", data.login.token);
+          sessionStorage.setItem("refreshToken", data.login.refreshToken);
+          this.getId();
+          setTimeout(() => {
+            this.loading = false;
+            this.router.navigate(['/dashboard']);
+          }, 2000);
+
+        } else {
+          this.loading = false;
+          this.error = "Invalid login response";
+        }
+      },
+      error: (error) => {
+        this.loading = false;
+        console.error("Error during login:", error);
+        this.error = error.message || 'Something went wrong.';
+      }
+    });
+  }
+
+  getId() {
+    this.apollo.watchQuery({
+      query: getId,
+      context: {
+        headers: {
+          'Authorization': this.token
+        },
+      }
     }).valueChanges.subscribe(({ data, error }: any) => {
       this.loading = false;
       if (error) {
         console.error("Error fetching users:", error);
-        this.error = error;
       } else {
-        console.log(data);
-        this.loading = true;
-
-        setTimeout(() => {
-          // Do something after 5 seconds
-          this.loading = false;
-          this.router.navigate(['/next']); // or any action
-        }, 5000);
-
-        // sessionStorage.setItem("token", data.login.token);
-        // sessionStorage.setItem("refreshToken", data.login.refreshToken);
+        sessionStorage.setItem("id", data.getId.id);
       }
     });
   }

@@ -1,4 +1,4 @@
-<div fxLayout="column">
+<div fxLayout="column" class="content">
   <div class="OtpTop">
   </div>
   <div class="OtpContent" fxLayout="column">
@@ -33,6 +33,8 @@
   <div class="OtpBottom"></div>
 </div>
 
-@if (loading) {
-<div class="loader"></div>
+@if (loading==true) {
+<div class="overlay">
+  <div class="loader"></div>
+</div>
 }

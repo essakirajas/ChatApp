@@ -9,5 +9,12 @@ query Login($phoneNo: Int!, $otp: String!) {
   }
 }
 `;
+const getId = gql`
+query  {
+  getId {
+    id 
+  }
+}
+`;
 
-export { login };
+export { login, getId };

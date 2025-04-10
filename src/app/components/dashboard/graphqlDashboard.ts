@@ -1,5 +1,13 @@
 import { gql } from 'apollo-angular';
 
+const validToken = gql`
+query ValidToken {
+  validToken {
+    msg
+  }
+}
+`;
+
 const addUser = gql`
   subscription {
     addUser {
@@ -19,6 +27,14 @@ const newMessage = gql`
   }
 `;
 
+const localUser = gql`
+query user {
+  user {
+    imgUrl name
+  }
+}
+`;
+
 const users = gql`
 query($userId:Int){
   friends(userId:$userId) {
@@ -30,4 +46,4 @@ query($userId:Int){
 }
 `;
 
-export { addUser, users, newMessage };
+export { localUser, addUser, users, newMessage, validToken };
